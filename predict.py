@@ -150,21 +150,21 @@ if __name__ == '__main__':
 
     if zerodats:
         v = np.zeros(100)
-        for key, val in seqdata['dttrain'].items():
-            seqdata['dttrain'][key] = v
+        for key, val in seqdata['dtrain'].items():
+            seqdata['dtrain'][key] = v
 
         for key, val in seqdata['dtval'].items():
             seqdata['dtval'][key] = v
     
-        for key, val in seqdata['dttest'].items():
-            seqdata['dttest'][key] = v
+        for key, val in seqdata['dtest'].items():
+            seqdata['dtest'][key] = v
 
     allfids = list(seqdata['ctest'].keys())
     datvocabsize = tdatstok.vocab_size
     comvocabsize = comstok.vocab_size
     smlvocabsize = smltok.vocab_size
 
-    datlen = len(seqdata['dttest'][list(seqdata['dttest'].keys())[0]])
+    datlen = len(seqdata['dtest'][list(seqdata['dtest'].keys())[0]])
     comlen = len(seqdata['ctest'][list(seqdata['ctest'].keys())[0]])
     smllen = len(seqdata['stest'][list(seqdata['stest'].keys())[0]])
 
@@ -194,7 +194,7 @@ if __name__ == '__main__':
         batch = {}
         st = timer()
         for fid in fid_set:
-            dat = seqdata['dttest'][fid]
+            dat = seqdata['dtest'][fid]
             sml = seqdata['stest'][fid]
             
             # adjust to model's expected data size
