@@ -169,6 +169,8 @@ if __name__ == '__main__':
     smllen = len(seqdata['stest'][list(seqdata['stest'].keys())[0]])
 
     prep('loading config... ')
+    #remove path prefix to prevent underscores in the pathname causing trouble
+    modelfile = modelfile.split('/')[-1]
     (modeltype, mid, timestart) = modelfile.split('_')
     (timestart, ext) = timestart.split('.')
     modeltype = modeltype.split('/')[-1]
