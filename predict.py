@@ -169,11 +169,10 @@ if __name__ == '__main__':
     smllen = len(seqdata['stest'][list(seqdata['stest'].keys())[0]])
 
     prep('loading config... ')
-    #remove path prefix to prevent underscores in the pathname causing trouble
-    modelfile = modelfile.split('/')[-1]
-    (modeltype, mid, timestart) = modelfile.split('_')
-    (timestart, ext) = timestart.split('.')
+    #remove path prefix first to prevent underscores in the pathname causing trouble
     modeltype = modeltype.split('/')[-1]
+    (modeltype, mid, timestart) = modeltype.split('_')
+    (timestart, ext) = timestart.split('.')
     config = pickle.load(open(outdir+'/histories/'+modeltype+'_conf_'+timestart+'.pkl', 'rb'))
     num_inputs = config['num_input']
     drop()
