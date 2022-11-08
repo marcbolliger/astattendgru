@@ -153,7 +153,7 @@ if __name__ == '__main__':
         for key, val in seqdata['dtrain'].items():
             seqdata['dtrain'][key] = v
 
-        for key, val in seqdata['dtval'].items():
+        for key, val in seqdata['dval'].items():
             seqdata['dval'][key] = v
     
         for key, val in seqdata['dtest'].items():
