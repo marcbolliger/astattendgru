@@ -1,0 +1,36 @@
+First step: generate srcML!
+
+1) comset
+TODO: Remove bad_fid lines
+input files needed: com_pp.txt (Text file with the comment annotation)
+output: dataset.coms
+(All comments with length >13 and <3 are ignored)
+
+2) datset
+Adapt Mysql setup
+-Reswords file?
+input files needed: fundats-j1.pkl or newdats.pkl (already written to pkl?) (Rename appropriately)
+line 109: My approach -> put the raw code into a .pkl so that each function is indexed by its fid
+Then iterate over the .pkl and apply re_0001 modification
+Remove structdats (line 124, 150, 156 etc) (not needed for ast-attend-gru, part of f-context for later funcom projects)
+line 142 -> skips all functions with more than 100 words, do we want that?
++ lower textdat
+write textdat to dataset.tdats, coms remains unchanged?
+
+input files needed: dats.pkl of function text indexed by fid
+output: dataset.tdats
+
+3) smlset (AST)
+Use this for dataset.srcml.seq, discard graph
+
+4) & 4.5) Split into test and train
+use the f_idp_id json...
+input:
+output:
+
+
+5) 
+Modify to use train_from_file() from tokenizer.py to get coms.tok and tdats.tok!
+
+6)
+Again remove sdat stuff..
