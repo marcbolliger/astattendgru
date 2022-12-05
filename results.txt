@@ -1,0 +1,11 @@
+ast-attend-gru BLEU scores at epoch 3
+
+standard:
+
+final status
+for 90908 functions
+Ba 19.41
+B1 38.58
+B2 21.99
+B3 14.82
+B4 11.3
