@@ -64,23 +64,12 @@ def repl_ph(tmp):
             out += ' ' + w + ' '
     return out
 
-#Deadcode
-#reswordsfd = open('../preprocessing/res_list.txt', 'r')
-#reswords = set()
-#for l in reswordsfd:
-#    l = l.rstrip()
-#    reswords.add(l)
-#reswords.add('{')
-#reswords.add('}')
-#reswords.add('(')
-#reswords.add(')')
 
 re_0001_ = re.compile(r'([^a-zA-Z0-9 ])|([a-z0-9_][A-Z])')
 
-comfile = './output/dataset.coms'
-datsfile = 'fundats-j1.pkl'
 
-coms = collections.defaultdict(str)
+
+#preprocess tdats
 
 try:
     dats = pickle.load(open('output/newdats.pkl', 'rb'))
@@ -95,49 +84,4 @@ except Exception as ex:
         newdats[fid] = re_0001_.sub(re_0002, dats[fid])
     dats = newdats
     pickle.dump(dats, open('output/newdats.pkl', 'wb'))
-
-textdats = collections.defaultdict(str)
-structdats = collections.defaultdict(str)
-
-c = 0
-
-for line in open(comfile):
-    tmp = line.split(',')
-    fid = int(tmp[0])
-    com = tmp[1]
-    
-    c += 1
-    if c % 100000 == 0:
-        print(c)
-    
-
-
-    tmp = dats[fid]
-
-
-    tmp = tmp.split()
-    if len(tmp) > 100:
-        continue
-
-    textdat = ' '.join(tmp)
-    contdat = get_context(fid, dats)
-    textdat = textdat.lower()
-    textdats[fid] = textdat
-    structdats[fid] = contdat
-    coms[fid] = com
-
-
-
-outfile1 = './output/dataset.tdats'
-outfile2 = './output/dataset.sdats'
-new_coms = open('./output/dataset.coms', 'w')
-fo = open(outfile1, 'w')
-fo2 = open(outfile2, 'w')
-for key, val in textdats.items():
-    fo.write("{}, {}\n".format(key, val))
-    fo2.write("{}, {}\n".format(key, structdats[key]))
-    new_coms.write("{}, {}".format(key, coms[key]))
-
-fo.close()
-fo2.close()
 
