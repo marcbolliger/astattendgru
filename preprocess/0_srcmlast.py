@@ -5,10 +5,10 @@ import sys
 import gzip
 
 #Cmdline arguments:
-#[0] - path to dataset/attack
-#[1] - path to output/processed data
-datapath = sys.argv[0] #'/itet-stor/marcbo/net_scratch/astgrudata/test/test.jsonl'
-outpath = sys.argv[1] #'./itet-stor/marcbo/net_scratch/astgrudata/test/srcml.seq'
+#[1] - path to dataset/attack
+#[2] - path to output/processed data
+datapath = sys.argv[1] #'/itet-stor/marcbo/net_scratch/astgrudata/test/test.jsonl'
+outpath = sys.argv[2] #'./itet-stor/marcbo/net_scratch/astgrudata/test/srcml.seq'
 srcmlpath = '/itet-stor/marcbo/net_scratch/srcml/build/bin/srcml'
 
 #Write the resulting asts into a pickle
