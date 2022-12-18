@@ -39,7 +39,7 @@ echo "SLURM_JOB_ID:    ${SLURM_JOB_ID}"
 
 # Add the library variable of the srcml tool
 #NOTE: change this to match the path of srmls lib in mlmfc (Also change srcmlpath in 0_srcmlast.py!)
-LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/itet-stor/marcbo/net_scratch/srcml/build/lib
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/itet-stor/marcbo/net_scratch/srcml/build/lib
 export LD_LIBRARY_PATH
 
 
