@@ -43,11 +43,11 @@ LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/itet-stor/marcbo/net_scratch/srcml/build/lib
 export LD_LIBRARY_PATH
 
 
-DATAPATH=/itet-stor/marcbo/codesearch-attacks_itetnas04/datasets/Funcom/default/
-OUTPATH=/itet-stor/marcbo/net_scratch/funcomprep/ast_test/
 
-# Run the preparation script
-time python3 /home/marcbo/astgru/funcom/preprocess/0_srcmlast.py ${DATAPATH} ${OUTPATH}
+# Run srcml
+/itet-stor/marcbo/net_scratch/srcml/build/bin/srcml /home/marcbo/astgru/funcom test.java
+
+
 
 # Send more noteworthy information to the output log
 echo "Finished at:     $(date)"
