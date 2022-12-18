@@ -53,7 +53,7 @@ find /usr/lib/ -name libarchive.so.13
 
 
 # Run srcml
-/itet-stor/marcbo/net_scratch/srcml/build/bin/srcml /home/marcbo/astgru/funcom test.java
+/itet-stor/marcbo/net_scratch/srcml/build/bin/srcml /home/marcbo/astgru/funcom/test.java
 
 
 
