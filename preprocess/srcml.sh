@@ -4,6 +4,7 @@
 #SBATCH --mem=64G
 #SBATCH --output=/home/marcbo/dataprep/log/%j.out
 #SBATCH --error=/home/marcbo/dataprep/log/%j.err
+#SBATCH --nodelist=arton04
 
 #Job script to test astattendgru preprocessing
 
