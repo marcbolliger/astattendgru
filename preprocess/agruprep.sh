@@ -36,8 +36,13 @@ echo "In directory:    $(pwd)"
 echo "Starting on:     $(date)"
 echo "SLURM_JOB_ID:    ${SLURM_JOB_ID}"
 
-DATAPATH=/itet-stor/marcbo/codesearch-attacks_itetnas04/datasets/Funcom/default/
 
+# Add the library variable of the srcml tool
+#NOTE: change this to match the path of srmls lib in mlmfc (Also change srcmlpath in 0_srcmlast.py!)
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/itet-stor/marcbo/net_scratch/srcml/build/lib
+
+
+DATAPATH=/itet-stor/marcbo/codesearch-attacks_itetnas04/datasets/Funcom/default/
 OUTPATH=/itet-stor/marcbo/net_scratch/funcomprep/ast_test/
 
 # Run the preparation script
