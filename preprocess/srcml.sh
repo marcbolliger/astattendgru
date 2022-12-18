@@ -4,7 +4,7 @@
 #SBATCH --mem=64G
 #SBATCH --output=/home/marcbo/dataprep/log/%j.out
 #SBATCH --error=/home/marcbo/dataprep/log/%j.err
-#SBATCH --nodelist=tikgpu03
+#SBATCH --nodelist=arton04
 
 #Job script to test astattendgru preprocessing
 
@@ -44,7 +44,7 @@ echo "SLURM_JOB_ID:    ${SLURM_JOB_ID}"
 echo $LD_LIBRARY_PATH
 
 LD_LIBRARY_PATH=/itet-stor/marcbo/net_scratch/srcml/build/lib
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu
+#LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu
 export LD_LIBRARY_PATH
 
 #Sanity check
