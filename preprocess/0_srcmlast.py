@@ -31,15 +31,24 @@ coms = dict() #Comments
 tdats = dict() #Code
 smldats = dict() #ASTS
 
+
+print("Building the ASTs")
+
 #Function that converts the dataset stored in mlmfc to a dataset expected by the preprocessing scripts
 #outtype is either train,val,test
 def preprocess(jsonpath, outpath, outtype):
+
+    print("Building for: "+outtype)
+
     with gzip.open(jsonpath+outtype+"/"+outtype+".jsonl.gz", 'r') as f:
     #Get the AST for each method in the dataset using srcml on the cmdline
         for fid, line in enumerate(f) :
             data = json.loads(line)
             com = data["docstring"]
             code = data["code"]
+
+            if(fid % 100000 == 0):
+                print(fid)
 
             with open("./temp.java", "w") as tempfile:
                 tempfile.write(code)
@@ -56,11 +65,11 @@ def preprocess(jsonpath, outpath, outtype):
 
         #Write output to file
         write(coms, outpath+"coms."+outtype)
-        write(tdats, outpath+"tdats."+outtype)
+        save_pickle(tdats, outpath+"tdats."+outtype+".pkl")
         #Dump AST in pickle
         save_pickle(smldats, outpath+"smldats."+outtype+".pkl")
 
 #Do the preprocessing for train/test/val each
-preprocess(datapath, outpath, "train")
 preprocess(datapath, outpath, "test")
-preprocess(datapath, outpath, "val")
+preprocess(datapath, outpath, "train")
+preprocess(datapath, outpath, "valid")

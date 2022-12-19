@@ -9,6 +9,14 @@ import sys
 datapath = sys.argv[1]
 
 
+
+#Helper for writing a dictionary to a file
+def write(data, filename):
+    with open(filename, 'w') as outfile:
+        for fid, string in data.items():
+            outfile.write("{}, {}\n".format(fid, string))
+
+
 def load(filename):
     return pickle.load(open(filename, 'rb'))
 
@@ -80,9 +88,10 @@ print("Removing special characters from the code")
 #datatype is either tdats or smldats
 
 def special_chars(data_type, train_type):
-    outfile = workpath+data_type+"."+train_type+".pkl"
+    infile = workpath+data_type+"."+train_type+".pkl"
+    outfile = workpath+data_type+"."+train_type
     print("Working on "+outfile)
-    dats = load(outfile)
+    dats = load(infile)
     newdats = dict()
     #c = 0
     for fid, dat in dats.items():
@@ -90,16 +99,16 @@ def special_chars(data_type, train_type):
         if fid % 100000 == 0:
             print(fid)
         newdats[fid] = re_0001_.sub(re_0002, dats[fid])
-        dats = newdats
-        pickle.dump(dats, open(outfile, 'wb'))
+    dats = newdats
+    write(dats, outfile)
 
 
 special_chars("tdats","train")
 special_chars("tdats","test")
-special_chars("tdats","val")
+special_chars("tdats","valid")
 special_chars("smldats","train")
 special_chars("smldats","test")
-special_chars("smldats","val")
+special_chars("smldats","valid")
 
 
 
