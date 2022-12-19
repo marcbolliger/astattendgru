@@ -4,7 +4,7 @@
 #SBATCH --mem=64G
 #SBATCH --output=/home/marcbo/dataprep/log/%j.out
 #SBATCH --error=/home/marcbo/dataprep/log/%j.err
-#SBATCH --nodelist=arton03
+#SBATCH --exclude=tikgpu[01-09],artongpu01
 
 #Job script to test astattendgru preprocessing
 
@@ -26,8 +26,8 @@ export TMPDIR
 cd "${TMPDIR}" || exit 1
 
 # Activate the conda environment
-#source /home/marcbo/.bashrc
-[[ -f /itet-stor/marcbo/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/marcbo/net_scratch/conda/bin/conda shell.bash hook)"
+#source /home/$USER/.bashrc
+[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/marcbo/net_scratch/conda/bin/conda shell.bash hook)"
 conda activate astgru
 echo "Conda activated"
 
