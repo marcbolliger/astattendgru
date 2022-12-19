@@ -60,7 +60,12 @@ def preprocess(jsonpath, outpath, outtype):
                 ast = astfile.read().rstrip()
                 smldats[fid] = ast
 
+            #Remove commas from comments
+            com = com.strip()
+            com = com.split()
+            com = ' '.join(com)
             coms[fid] = com
+
             tdats[fid] = code
 
         #Write output to file
