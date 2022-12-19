@@ -50,6 +50,9 @@ OUTPATH=/itet-stor/marcbo/net_scratch/astgrudata/preprocess/outdir/
 
 # Run the preparation script
 time python3 /home/marcbo/astgru/funcom/preprocess/0_srcmlast.py ${DATAPATH} ${OUTPATH}
+time python3 /home/marcbo/astgru/funcom/preprocess/1_specialchars.py ${OUTPATH}
+time python3 /home/marcbo/astgru/funcom/preprocess/2_tokenize.py ${OUTPATH}
+time python3 /home/marcbo/astgru/funcom/preprocess/3_final.py ${OUTPATH}
 
 # Send more noteworthy information to the output log
 echo "Finished at:     $(date)"
