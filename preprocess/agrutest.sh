@@ -48,7 +48,7 @@ DATAPATH=/itet-stor/marcbo/net_scratch/astgrudata/preprocess/default/
 
 OUTPATH=/itet-stor/marcbo/net_scratch/astgrudata/preprocess/outdir/
 
-# Run the preparation script
+# Run the preparation scripts
 time python3 /home/marcbo/astgru/funcom/preprocess/0_srcmlast.py ${DATAPATH} ${OUTPATH}
 time python3 /home/marcbo/astgru/funcom/preprocess/1_specialchars.py ${OUTPATH}
 time python3 /home/marcbo/astgru/funcom/preprocess/2_tokenize.py ${OUTPATH}

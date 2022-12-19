@@ -88,8 +88,8 @@ print("Removing special characters from the code")
 #datatype is either tdats or smldats
 
 def special_chars(data_type, train_type):
-    infile = workpath+data_type+"."+train_type+".pkl"
-    outfile = workpath+data_type+"."+train_type
+    infile = datapath+data_type+"."+train_type+".pkl"
+    outfile = datapath+data_type+"."+train_type
     print("Working on "+outfile)
     dats = load(infile)
     newdats = dict()
