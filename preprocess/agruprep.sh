@@ -6,7 +6,10 @@
 #SBATCH --error=/home/marcbo/dataprep/log/%j.err
 #SBATCH --exclude=tikgpu[01-09],artongpu01
 
-#Job script to test astattendgru preprocessing
+#Job script to run astattendgru preprocessing
+#Important that this job runs on a cpu node, to ensure that srcML works
+#Hence the --exclude option.
+
 
 # Exit on errors
 set -o errexit
@@ -27,7 +30,7 @@ cd "${TMPDIR}" || exit 1
 
 # Activate the conda environment
 #source /home/$USER/.bashrc
-[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/marcbo/net_scratch/conda/bin/conda shell.bash hook)"
+[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)"
 conda activate astgru
 echo "Conda activated"
 
@@ -44,11 +47,22 @@ LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/itet-stor/marcbo/net_scratch/srcml/build/lib
 export LD_LIBRARY_PATH
 
 
-DATAPATH=/itet-stor/marcbo/codesearch-attacks_itetnas04/datasets/Funcom/default/
-OUTPATH=/itet-stor/marcbo/net_scratch/funcomprep/ast_test/
+DATAPATH=$1
+OUTPATH=$2
+#For testing
+#/itet-stor/marcbo/net_scratch/astgrudata/preprocess/default/
+#/itet-stor/marcbo/net_scratch/astgrudata/preprocess/outdir/
 
-# Run the preparation script
-time python3 /home/marcbo/astgru/funcom/preprocess/0_srcmlast.py ${DATAPATH} ${OUTPATH}
+# Run the preparation scripts
+# 1. Build ASTs and remove commas from comments
+python3 /home/marcbo/astgru/funcom/preprocess/0_srcmlast.py ${DATAPATH} ${OUTPATH}
+# 2. Remove special characters
+python3 /home/marcbo/astgru/funcom/preprocess/1_specialchars.py ${OUTPATH}
+# 3. Build the tokenizers
+python3 /home/marcbo/astgru/funcom/preprocess/2_tokenize.py ${OUTPATH}
+# 4. Generate input file to be used by the model (dataset.pkl)
+python3 /home/marcbo/astgru/funcom/preprocess/3_final.py ${OUTPATH}
+
 
 # Send more noteworthy information to the output log
 echo "Finished at:     $(date)"

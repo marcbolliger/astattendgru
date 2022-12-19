@@ -27,7 +27,7 @@ cd "${TMPDIR}" || exit 1
 
 # Activate the conda environment
 #source /home/marcbo/.bashrc
-[[ -f /itet-stor/marcbo/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/marcbo/net_scratch/conda/bin/conda shell.bash hook)"
+[[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)"
 conda activate astgru
 echo "Conda activated"
 
