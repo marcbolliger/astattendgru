@@ -39,7 +39,7 @@ echo "SLURM_JOB_ID:    ${SLURM_JOB_ID}"
 
 
 # Run on arton
-sbatch /home/marcbo/astgru/funcom/preprocess/srcml.sh
+sbatch --wait /home/marcbo/astgru/funcom/preprocess/srcml.sh
 
 # Send more noteworthy information to the output log
 echo "Finished at:     $(date)"
