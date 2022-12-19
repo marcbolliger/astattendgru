@@ -19,10 +19,10 @@ print("Tokenizing Comments")
 comsprfx = datapath+"coms."
 comstok = Tokenizer()
 comstok.train_from_file(comsprfx+"train",coms_vocab)
-coms.update_from_file(comsprfx+"test")
-coms.update_from_file(comsprfx+"valid")
+comstok.update_from_file(comsprfx+"test")
+comstok.update_from_file(comsprfx+"valid")
 coms_outfile = datapath+"coms.tok"
-coms.save(coms_outfile)
+comstok.save(coms_outfile)
 
 print("Tokenizing Code")
 
