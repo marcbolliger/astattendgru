@@ -51,7 +51,7 @@ DATAPATH=$1
 TEMPPATH=$2
 MODELPATH=$3
 #For testing
-#/itet-stor/marcbo/net_scratch/astgrudata/preprocess/default/
+DATAPATH=/itet-stor/marcbo/net_scratch/astgrudata/preprocess/default/
 #/itet-stor/marcbo/net_scratch/astgrudata/preprocess/outdir/
 
 # Run the preparation scripts
