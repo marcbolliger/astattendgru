@@ -21,6 +21,11 @@ def write(data, filename):
         for fid, string in data.items():
             outfile.write("{}, {}\n".format(fid, string))
 
+def write_coms(data, filename)
+    with open(filename, 'w') as outfile:
+        for fid, string in data.items():
+            outfile.write("{}, <s> {} </s>\n".format(fid, string))
+
 #Helper for storing a dictionary as a pickle
 def save_pickle(data, filename):
     with open(filename,'wb') as outfile:
@@ -69,7 +74,7 @@ def preprocess(jsonpath, outpath, outtype):
             tdats[fid] = code
 
         #Write output to file
-        write(coms, outpath+"coms."+outtype)
+        write_coms(coms, outpath+"coms."+outtype)
         save_pickle(tdats, outpath+"tdats."+outtype+".pkl")
         #Dump AST in pickle
         save_pickle(smldats, outpath+"smldats."+outtype+".pkl")
