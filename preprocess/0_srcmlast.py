@@ -21,7 +21,7 @@ def write(data, filename):
         for fid, string in data.items():
             outfile.write("{}, {}\n".format(fid, string))
 
-def write_coms(data, filename)
+def write_coms(data, filename):
     with open(filename, 'w') as outfile:
         for fid, string in data.items():
             outfile.write("{}, <s> {} </s>\n".format(fid, string))
