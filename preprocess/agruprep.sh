@@ -65,6 +65,7 @@ python3 $shareddir/models_sourcecode/funcom/preprocess/2_tokenize.py ${TEMPPATH}
 python3 $shareddir/models_sourcecode/funcom/preprocess/3_final.py ${TEMPPATH}/ ${MODELPATH}/
 
 cp ${MODELPATH}/smls.tok ${MODELPATH}/dats.tok
+cp ${TEMPPATH}/coms.test ${MODELPATH}/coms.test 
 
 # Send more noteworthy information to the output log
 echo "Finished at:     $(date)"
