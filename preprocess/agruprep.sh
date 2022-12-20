@@ -47,9 +47,17 @@ LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/itet-stor/marcbo/net_scratch/srcml/build/lib
 export LD_LIBRARY_PATH
 
 shareddir=/itet-stor/${USER}/codesearch-attacks_itetnas04
-DATAPATH=$1
-TEMPPATH=$2
-MODELPATH=$3
+
+model=$1
+dataset=$2
+attack=$3
+confused=$4
+
+DATAPATH=$shareddir/datasets/$dataset/$attack
+TEMPPATH=$shareddir/tempdir_$SLURM_JOB_ID
+mkdir ${TEMPPATH}
+
+MODELPATH=$shareddir/saved_models/$model/$dataset/$attack
 #For testing
 DATAPATH=/itet-stor/marcbo/net_scratch/astgrudata/preprocess/default/
 #/itet-stor/marcbo/net_scratch/astgrudata/preprocess/outdir/
@@ -66,6 +74,11 @@ python3 $shareddir/models_sourcecode/funcom/preprocess/3_final.py ${TEMPPATH}/ $
 
 cp ${MODELPATH}/smls.tok ${MODELPATH}/dats.tok
 cp ${TEMPPATH}/coms.test ${MODELPATH}/coms.test 
+
+rm -r ${TEMPPATH}
+
+#Proceed with training now that preprocessing is done
+sbatch --gres=gpu:1 $shareddir/src/mlmfc_ui_main.sh $model $dataset $attack "training" "testing" $confused
 
 # Send more noteworthy information to the output log
 echo "Finished at:     $(date)"
