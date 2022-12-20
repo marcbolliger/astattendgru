@@ -171,9 +171,7 @@ if __name__ == '__main__':
     prep('loading config... ')
     #remove path prefix first to prevent underscores in the pathname causing trouble
     modeltype = modelfile.split('/')[-1]
-    (modeltype, mid, timestart) = modeltype.split('_')
-    (timestart, ext) = timestart.split('.')
-    config = pickle.load(open(outdir+'/histories/'+modeltype+'_conf_'+timestart+'.pkl', 'rb'))
+    config = pickle.load(open(outdir+'/histories/'+modeltype+'_conf_'+'.pkl', 'rb'))
     num_inputs = config['num_input']
     drop()
 

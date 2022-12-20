@@ -48,7 +48,7 @@ class HistoryCallback(Callback):
                 pickle.dump(self.history, histoutfd)
                 print('saved history to: ' + fn)
                 
-                fn = outdir+'/histories/'+self.modeltype+'_conf_'+str(self.timestart)+'.pkl'
+                fn = outdir+'/histories/'+self.modeltype+'_conf_'+'.pkl'
                 confoutfd = open(fn, 'wb')
                 pickle.dump(self.mdlconfig, confoutfd)
                 print('saved config to: ' + fn)
