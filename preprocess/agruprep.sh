@@ -31,7 +31,7 @@ cd "${TMPDIR}" || exit 1
 # Activate the conda environment
 #source /home/$USER/.bashrc
 [[ -f /itet-stor/${USER}/net_scratch/conda/bin/conda ]] && eval "$(/itet-stor/${USER}/net_scratch/conda/bin/conda shell.bash hook)"
-conda activate astgru
+conda activate /itet-stor/${USER}/codesearch-attacks_itetnas04/envs/astgruenv
 echo "Conda activated"
 
 # Send some noteworthy information to the output log
@@ -46,22 +46,23 @@ echo "SLURM_JOB_ID:    ${SLURM_JOB_ID}"
 LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/itet-stor/marcbo/net_scratch/srcml/build/lib
 export LD_LIBRARY_PATH
 
-
+shareddir=/itet-stor/${USER}/codesearch-attacks_itetnas04
 DATAPATH=$1
-OUTPATH=$2
+TEMPPATH=$2
+MODELPATH=$3
 #For testing
 #/itet-stor/marcbo/net_scratch/astgrudata/preprocess/default/
 #/itet-stor/marcbo/net_scratch/astgrudata/preprocess/outdir/
 
 # Run the preparation scripts
 # 1. Build ASTs and remove commas from comments
-python3 /home/marcbo/astgru/funcom/preprocess/0_srcmlast.py ${DATAPATH} ${OUTPATH}
+python3 $shareddir/models_sourcecode/funcom/preprocess/0_srcmlast.py ${DATAPATH}/ ${TEMPPATH}/
 # 2. Remove special characters
-python3 /home/marcbo/astgru/funcom/preprocess/1_specialchars.py ${OUTPATH}
+python3 $shareddir/models_sourcecode/funcom/preprocess/1_specialchars.py ${TEMPPATH}/
 # 3. Build the tokenizers
-python3 /home/marcbo/astgru/funcom/preprocess/2_tokenize.py ${OUTPATH}
+python3 $shareddir/models_sourcecode/funcom/preprocess/2_tokenize.py ${TEMPPATH}/ ${MODELPATH}/
 # 4. Generate input file to be used by the model (dataset.pkl)
-python3 /home/marcbo/astgru/funcom/preprocess/3_final.py ${OUTPATH}
+python3 $shareddir/models_sourcecode/funcom/preprocess/3_final.py ${TEMPPATH}/ ${MODELPATH}/
 
 
 # Send more noteworthy information to the output log

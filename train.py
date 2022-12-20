@@ -147,7 +147,7 @@ if __name__ == '__main__':
     
 
     gen = batch_gen(seqdata, 'train', modeltype, config)
-    checkpoint = ModelCheckpoint(outdir+'/models/'+modeltype+'_E{epoch:02d}_'+str(timestart)+'.h5')
+    checkpoint = ModelCheckpoint(outdir+'/models/'+modeltype+'_E{epoch:02d}_'+'.h5')
     savehist = HistoryCallback()
     savehist.setCatchExit(outdir, modeltype, timestart, config)
     

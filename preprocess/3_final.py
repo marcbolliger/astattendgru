@@ -5,8 +5,10 @@ import uuid
 
 
 #CMDLINE ARGS
-#[1] - path to data/working directory
+#[1] - path to temporary directory
+#[2] - path to model directory
 datapath = sys.argv[1]
+modelpath = sys.argv[2]
 
 comlen = 13
 #sdatlen = 20 # average is 8 functions per file
@@ -32,8 +34,8 @@ sml_valf = datapath+'smldats.valid'
 sml_testf = datapath+'smldats.test'
 
 
-comstok = tokenizer.Tokenizer().load(datapath+'coms.tok')
-smlstok = tokenizer.Tokenizer().load(datapath+'smls.tok')
+comstok = tokenizer.Tokenizer().load(modelpath+'coms.tok')
+smlstok = tokenizer.Tokenizer().load(modelpath+'smls.tok')
 tdatstok = smlstok # same tokenizer for smls and tdats so we can share embedding
 sdatstok = tdatstok # also same tokenizer for tdats and sdats
 
@@ -64,4 +66,4 @@ dataset = {'ctrain': com_train, 'cval': com_val, 'ctest': com_test,
 	   'comstok': comstok, 'tdatstok': tdatstok, 'smltok': smlstok,
            'config': out_config}
 
-save(dataset, 'dataset.pkl')
+save(dataset, modelpath+'dataset.pkl')
