@@ -64,6 +64,7 @@ python3 $shareddir/models_sourcecode/funcom/preprocess/2_tokenize.py ${TEMPPATH}
 # 4. Generate input file to be used by the model (dataset.pkl)
 python3 $shareddir/models_sourcecode/funcom/preprocess/3_final.py ${TEMPPATH}/ ${MODELPATH}/
 
+cp ${MODELPATH}/smls.tok ${MODELPATH}/dats.tok
 
 # Send more noteworthy information to the output log
 echo "Finished at:     $(date)"
