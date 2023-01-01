@@ -47,6 +47,8 @@ LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/itet-stor/marcbo/net_scratch/srcml/build/lib
 export LD_LIBRARY_PATH
 
 shareddir=/itet-stor/${USER}/codesearch-attacks_itetnas04
+#For testing
+testdir=/itet-stor/marcbo/net_scratch/mlmfc
 
 model=$1
 dataset=$2
@@ -78,7 +80,7 @@ cp ${TMPDIR}/coms.test ${MODELPATH}/coms.test
 #rm -r ${TEMPPATH}
 
 #Proceed with training now that preprocessing is done
-sbatch --gres=gpu:1 $shareddir/src/mlmfc_ui_main.sh $model $dataset $attack "training" "testing" $confused
+sbatch --gres=gpu:1 $testdir/src/mlmfc_ui_main.sh $model $dataset $attack "training" "testing" $confused
 
 # Send more noteworthy information to the output log
 echo "Finished at:     $(date)"
