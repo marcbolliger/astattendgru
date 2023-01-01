@@ -44,7 +44,7 @@ print("Building the ASTs")
 #outtype is either train,val,test
 def preprocess(jsonpath, outpath, outtype):
 
-    print("Building for: "+outtype)
+    print("Building for: "+outtype, flush=True)
 
     with gzip.open(jsonpath+outtype+"/"+outtype+".jsonl.gz", 'r') as f:
     #Get the AST for each method in the dataset using srcml on the cmdline
@@ -54,7 +54,7 @@ def preprocess(jsonpath, outpath, outtype):
             code = data["code"]
 
             if(fid % 10000 == 0):
-                print(fid)
+                print(fid, flush=True)
 
             with open("./temp.java", "w") as tempfile:
                 tempfile.write(code)
