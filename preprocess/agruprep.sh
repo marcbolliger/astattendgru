@@ -61,7 +61,7 @@ DATAPATH=$shareddir/datasets/$dataset/$attack
 
 MODELPATH=$shareddir/saved_models/$model/$dataset/$attack
 #For testing
-DATAPATH=/itet-stor/marcbo/net_scratch/astgrudata/preprocess/default/
+#DATAPATH=/itet-stor/marcbo/net_scratch/astgrudata/preprocess/default/
 #/itet-stor/marcbo/net_scratch/astgrudata/preprocess/outdir/
 
 # Run the preparation scripts

@@ -3,6 +3,7 @@ import json
 import os
 import sys
 import gzip
+from zipfile import ZipFile
 
 #Cmdline arguments:
 #[1] - path to dataset/attack
@@ -52,7 +53,7 @@ def preprocess(jsonpath, outpath, outtype):
             com = data["docstring"]
             code = data["code"]
 
-            if(fid % 100000 == 0):
+            if(fid % 10000 == 0):
                 print(fid)
 
             with open("./temp.java", "w") as tempfile:
