@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #SBATCH --mail-type=ALL
-#SBATCH --mem=64G
+#SBATCH --mem=120G
 #SBATCH --output=/home/marcbo/dataprep/log/%j.out
 #SBATCH --error=/home/marcbo/dataprep/log/%j.err
 #SBATCH --exclude=tikgpu[01-09],artongpu01
