@@ -42,7 +42,7 @@ echo "SLURM_JOB_ID:    ${SLURM_JOB_ID}"
 
 
 # Add the library variable of the srcml tool
-#NOTE: change this to match the path of srmls lib in mlmfc (Also change srcmlpath in 0_srcmlast.py!)
+#NOTE: change this to match the path of srcmls lib in mlmfc (Also change srcmlpath in 0_srcmlast.py!)
 LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/itet-stor/marcbo/net_scratch/srcml/build/lib
 export LD_LIBRARY_PATH
 
@@ -54,8 +54,8 @@ attack=$3
 confused=$4
 
 DATAPATH=$shareddir/datasets/$dataset/$attack
-TEMPPATH=$shareddir/tempdir_$SLURM_JOB_ID
-mkdir ${TEMPPATH}
+#TEMPPATH=$shareddir/tempdir_$SLURM_JOB_ID
+#mkdir ${TEMPPATH}
 
 MODELPATH=$shareddir/saved_models/$model/$dataset/$attack
 #For testing
@@ -64,18 +64,18 @@ DATAPATH=/itet-stor/marcbo/net_scratch/astgrudata/preprocess/default/
 
 # Run the preparation scripts
 # 1. Build ASTs and remove commas from comments
-python3 $shareddir/models_sourcecode/funcom/preprocess/0_srcmlast.py ${DATAPATH}/ ${TEMPPATH}/
+python3 $shareddir/models_sourcecode/astattendgru/preprocess/0_srcmlast.py ${DATAPATH}/ ${TMPDIR}/
 # 2. Remove special characters
-python3 $shareddir/models_sourcecode/funcom/preprocess/1_specialchars.py ${TEMPPATH}/
+python3 $shareddir/models_sourcecode/astattendgru/preprocess/1_specialchars.py ${TMPDIR}/
 # 3. Build the tokenizers
-python3 $shareddir/models_sourcecode/funcom/preprocess/2_tokenize.py ${TEMPPATH}/ ${MODELPATH}/
+python3 $shareddir/models_sourcecode/astattendgru/preprocess/2_tokenize.py ${TMPDIR}/ ${MODELPATH}/
 # 4. Generate input file to be used by the model (dataset.pkl)
-python3 $shareddir/models_sourcecode/funcom/preprocess/3_final.py ${TEMPPATH}/ ${MODELPATH}/
+python3 $shareddir/models_sourcecode/astattendgru/preprocess/3_final.py ${TMPDIR}/ ${MODELPATH}/
 
 cp ${MODELPATH}/smls.tok ${MODELPATH}/dats.tok
-cp ${TEMPPATH}/coms.test ${MODELPATH}/coms.test 
+cp ${TMPDIR}/coms.test ${MODELPATH}/coms.test 
 
-rm -r ${TEMPPATH}
+#rm -r ${TEMPPATH}
 
 #Proceed with training now that preprocessing is done
 sbatch --gres=gpu:1 $shareddir/src/mlmfc_ui_main.sh $model $dataset $attack "training" "testing" $confused
