@@ -57,25 +57,26 @@ confused=$4
 
 DATAPATH=$shareddir/datasets/$dataset/$attack
 #TEMPPATH=$shareddir/tempdir_$SLURM_JOB_ID
-#mkdir ${TEMPPATH}
+TEMPPATH=/itet-stor/marcbo/net_scratch/astgrudata/tempdir_$SLURM_JOB_ID
+mkdir ${TEMPPATH}
 
 MODELPATH=$shareddir/saved_models/$model/$dataset/$attack
 #For testing
-#DATAPATH=/itet-stor/marcbo/net_scratch/astgrudata/preprocess/default/
+DATAPATH=/itet-stor/marcbo/net_scratch/astgrudata/preprocess/default/
 #/itet-stor/marcbo/net_scratch/astgrudata/preprocess/outdir/
 
 # Run the preparation scripts
 # 1. Build ASTs and remove commas from comments
-python3 $shareddir/models_sourcecode/astattendgru/preprocess/0_srcmlast.py ${DATAPATH}/ ${TMPDIR}/
+python3 $shareddir/models_sourcecode/astattendgru/preprocess/0_srcmlast.py ${DATAPATH}/ ${TEMPPATH}/
 # 2. Remove special characters
-python3 $shareddir/models_sourcecode/astattendgru/preprocess/1_specialchars.py ${TMPDIR}/
+python3 $shareddir/models_sourcecode/astattendgru/preprocess/1_specialchars.py ${TEMPPATH}/
 # 3. Build the tokenizers
-python3 $shareddir/models_sourcecode/astattendgru/preprocess/2_tokenize.py ${TMPDIR}/ ${MODELPATH}/
+python3 $shareddir/models_sourcecode/astattendgru/preprocess/2_tokenize.py ${TEMPPATH}/ ${MODELPATH}/
 # 4. Generate input file to be used by the model (dataset.pkl)
-python3 $shareddir/models_sourcecode/astattendgru/preprocess/3_final.py ${TMPDIR}/ ${MODELPATH}/
+python3 $shareddir/models_sourcecode/astattendgru/preprocess/3_final.py ${TEMPPATH}/ ${MODELPATH}/
 
 cp ${MODELPATH}/smls.tok ${MODELPATH}/dats.tok
-cp ${TMPDIR}/coms.test ${MODELPATH}/coms.test 
+cp ${TEMPPATH}/coms.test ${MODELPATH}/coms.test
 
 #rm -r ${TEMPPATH}
 
