@@ -6,6 +6,7 @@
 #SBATCH --error=/home/marcbo/dataprep/log/%j.err
 #SBATCH --exclude=tikgpu[01-09],artongpu01
 
+#ONLY FOR TESTING
 #Job script to run astattendgru preprocessing
 #Important that this job runs on a cpu node, to ensure that srcML works
 #Hence the --exclude option.
@@ -60,7 +61,11 @@ DATAPATH=$shareddir/datasets/$dataset/$attack
 TEMPPATH=/itet-stor/marcbo/net_scratch/astgrudata/tempdir_$SLURM_JOB_ID
 mkdir ${TEMPPATH}
 
-MODELPATH=$shareddir/saved_models/$model/$dataset/$attack
+MODELPATH=/itet-stor/marcbo/net_scratch/saved_models/$model/$dataset/$attack
+mkdir -p $MODELPATH
+mkdir -p $MODELPATH/models
+mkdir -p $MODELPATH/histories
+mkdir -p $MODELPATH/predictions
 #For testing
 DATAPATH=/itet-stor/marcbo/net_scratch/astgrudata/preprocess/default/
 #/itet-stor/marcbo/net_scratch/astgrudata/preprocess/outdir/
@@ -81,7 +86,7 @@ cp ${TEMPPATH}/coms.test ${MODELPATH}/coms.test
 #rm -r ${TEMPPATH}
 
 #Proceed with training now that preprocessing is done
-sbatch --gres=gpu:1 $testdir/src/mlmfc_ui_main.sh $model $dataset $attack "training" "testing" $confused
+#sbatch --gres=gpu:1 $testdir/src/mlmfc_ui_main.sh $model $dataset $attack "training" "testing" $confused
 
 # Send more noteworthy information to the output log
 echo "Finished at:     $(date)"
