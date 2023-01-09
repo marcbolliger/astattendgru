@@ -67,7 +67,7 @@ mkdir -p $MODELPATH/models
 mkdir -p $MODELPATH/histories
 mkdir -p $MODELPATH/predictions
 #For testing
-DATAPATH=/itet-stor/marcbo/net_scratch/astgrudata/preprocess/default/
+#DATAPATH=/itet-stor/marcbo/net_scratch/astgrudata/preprocess/default/
 #/itet-stor/marcbo/net_scratch/astgrudata/preprocess/outdir/
 
 # Run the preparation scripts
