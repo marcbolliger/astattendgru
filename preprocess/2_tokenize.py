@@ -3,7 +3,6 @@ import pickle
 import re
 import collections
 import sys
-
 #CMDLINE ARGS
 #[1] - path to temporary directory
 #[2] - path to model directory

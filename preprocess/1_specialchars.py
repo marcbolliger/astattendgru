@@ -2,7 +2,8 @@ import pickle
 import re
 import collections
 import sys
-
+from zipfile import ZipFile
+import datetime
 
 #CMDLINE ARGS
 #[1] - path to data/working directory
@@ -97,7 +98,9 @@ def special_chars(data_type, train_type):
     for fid, dat in dats.items():
         #c += 1
         if fid % 100000 == 0:
-            print(fid)
+            print(fid, flush=True)
+            ct = datetime.datetime.now()
+            print("current time: ", ct, flush=True)
         newdats[fid] = re_0001_.sub(re_0002, dats[fid])
     dats = newdats
     write(dats, outfile)
