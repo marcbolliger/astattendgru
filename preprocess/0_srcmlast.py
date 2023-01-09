@@ -55,7 +55,7 @@ def preprocess(jsonpath, outpath, outtype):
             code = data["code"]
 
 
-            if(fid % 20000 == 0):
+            if(fid % 20000 == 0 and fid != 0):
                 print(fid, flush=True)
                 ct = datetime.datetime.now()
                 print("current time: ", ct, flush=True)
