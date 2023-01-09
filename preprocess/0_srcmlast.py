@@ -19,18 +19,18 @@ srcmlpath = '/itet-stor/marcbo/net_scratch/srcml/build/bin/srcml'
 
 #Helper for writing a dictionary to a file
 def write(data, filename):
-    with open(filename, 'a') as outfile:
+    with open(filename, 'w') as outfile:
         for fid, string in data.items():
             outfile.write("{}, {}\n".format(fid, string))
 
 def write_coms(data, filename):
-    with open(filename, 'a') as outfile:
+    with open(filename, 'w') as outfile:
         for fid, string in data.items():
             outfile.write("{}, <s> {} </s>\n".format(fid, string))
 
 #Helper for storing a dictionary as a pickle
 def save_pickle(data, filename):
-    with open(filename,'ab') as outfile:
+    with open(filename,'wb') as outfile:
         pickle.dump(data, outfile)
 
 
@@ -59,14 +59,6 @@ def preprocess(jsonpath, outpath, outtype):
                 print(fid, flush=True)
                 ct = datetime.datetime.now()
                 print("current time: ", ct, flush=True)
-                #Write back to file to free up memory
-                write_coms(coms, outpath+"coms."+outtype)
-                save_pickle(tdats, outpath+"tdats."+outtype+".pkl")
-                #Dump AST in pickle
-                save_pickle(smldats, outpath+"smldats."+outtype+".pkl")
-                coms.clear()
-                tdats.clear()
-                smldats.clear()
 
 
             with open("./temp.java", "w") as tempfile:
