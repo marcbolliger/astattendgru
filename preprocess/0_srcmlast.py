@@ -64,9 +64,9 @@ def preprocess(jsonpath, outpath, outtype):
                 save_pickle(tdats, outpath+"tdats."+outtype+".pkl")
                 #Dump AST in pickle
                 save_pickle(smldats, outpath+"smldats."+outtype+".pkl")
-                coms = dict()
-                tdats = dict()
-                smldats = dict()
+                coms.clear()
+                tdats.clear()
+                smldats.clear()
 
 
             with open("./temp.java", "w") as tempfile:
