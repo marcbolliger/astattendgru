@@ -75,6 +75,8 @@ def preprocess(jsonpath, outpath, outtype):
             com = com.strip()
             com = com.split(',')
             com = ' '.join(com)
+            com = com.split()
+            com = ' '.join(com)
             coms[fid] = com
 
             tdats[fid] = code
