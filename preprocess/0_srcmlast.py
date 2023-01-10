@@ -73,7 +73,7 @@ def preprocess(jsonpath, outpath, outtype):
 
             #Remove commas from comments
             com = com.strip()
-            com = com.split()
+            com = com.split(',')
             com = ' '.join(com)
             coms[fid] = com
 
